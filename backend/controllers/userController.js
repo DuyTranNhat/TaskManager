@@ -49,7 +49,11 @@ export async function register(req, res) {
     return res.status(200).json({
       success: true,
       message: "Đăng nhập thành công",
-      user,
+      user : {
+        id: user._id,
+        fullName: user.name,
+        email: user.email,
+      },
       token,
     });
   } catch (error) {
@@ -91,7 +95,7 @@ export async function login(req, res) {
       message: "Đăng nhập thành công",
       user : {
         id: user._id,
-        fullName: user.fullName,
+        fullName: user.name,
         email: user.email,
       },
       token,
