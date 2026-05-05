@@ -1,1 +1,46 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+
+@layer base {
+    body {
+        @apply font-roboto;
+    }
+}
+
+@theme {
+    --font-roboto: 'Roboto', sans-serif;
+    --color-side: #e12afb;
+    --color-main: #9810fa;
+    --color-low-priority: #0f9b0f;
+    --color-high-priority: #c31432;
+    --color-normal-priority: #f37335;
+    --animate-fadeIn: fadeIn 0.5s ease-out;
+
+    @keyframes fadeIn {
+        from {
+            transform: translateY(-4px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+@layer components {
+    .login-box {
+        @apply flex flex-col justify-center rounded-2xl bg-white p-6 shadow-[10px_10px_10px] shadow-purple-700;
+    }
+
+    .form-input {
+        @apply focus-within:outline-main my-2 flex items-center rounded-lg border border-gray-100 p-2 focus-within:outline-2;
+    }
+}
+
+@layer utilities {
+    .bg-gradient-color {
+        @apply from-side to-main bg-gradient-to-r;
+    }
+}
