@@ -15,14 +15,11 @@ function App() {
                             const Page: ({ title }: { title: string }) => JSX.Element = route.component;
                             let Layout = MainLayout;
 
-
                             if (route.layout) {
                                 Layout = route.layout;
                             } else if (route.layout === null) {
                                 Layout = Fragment;
                             }
-
-
 
                             return (
                                 <Route

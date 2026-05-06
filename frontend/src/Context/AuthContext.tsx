@@ -63,6 +63,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             const redirectTo = location.state?.from?.pathname || '/';
             toast.success('Đăng nhập thành công');
             Cookies.set('accessToken', data.accessToken, { expires: 7 });
+            // const expires = new Date(Date.now() + 30 * 1000);
+            // Cookies.set('accessToken', data.accessToken, { expires });
             navigate(redirectTo, { replace: true });
             setUser(data.user);
             localStorage.setItem('user', JSON.stringify(data.user));
