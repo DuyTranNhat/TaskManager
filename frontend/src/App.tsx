@@ -3,6 +3,7 @@ import routes from '~/routes';
 import { Fragment, JSX } from "react";
 import MainLayout from "./layouts";
 import { AuthProvider } from "./Context";
+import { ToastContainer } from "react-toastify";
 
 function App() {
     return (
@@ -38,6 +39,14 @@ function App() {
                     </Routes>
                 </div>
             </AuthProvider>
+             <ToastContainer
+                position="top-right"
+                autoClose={3000} // 3s tự đóng
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnHover
+            />
         </Router>
     );
 }
