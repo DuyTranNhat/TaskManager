@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import userModel from "../models/UserModel.js";
 
 
-const JWT_SECRET = process.env.JWT_SECRET;
 
 export default async function authMiddleware(req, res, next) {
   try {
@@ -21,9 +20,9 @@ export default async function authMiddleware(req, res, next) {
     }
 
     // 3. Verify token
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
-    // payload là: { id, email }
+    // payload là: { id, email }  
     const user = await userModel.findById(payload.id).select("-password");
 
     if (!user) {

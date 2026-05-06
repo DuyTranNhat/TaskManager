@@ -14,6 +14,7 @@ export const generateAccessToken = (user) => {
         },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: `${ACCESS_EXPIRE_MINUTES}m` },
+        // { expiresIn: '30s' },
     );
 };
 

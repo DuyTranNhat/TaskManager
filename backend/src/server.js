@@ -13,12 +13,12 @@ const PORT = process.env.PORT || 4000;
 
 // Middleware
 app.use(
-    cors({
-        origin: process.env.CORS_ORIGIN || 'http://localhost:5174',
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
-        credentials: true,
-    }),
+  cors({
+    origin: process.env.CORS_ORIGIN || 'http://localhost:5174',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  }),
 );
 
 app.use(express.urlencoded({ extended: true }));
@@ -36,7 +36,7 @@ app.use('/api', routes);
 
 
 app.get('/', (req, res) => {
-  res.send('Test API is working!');
+  res.send('Test API is workingggg!');
 });
 
 
