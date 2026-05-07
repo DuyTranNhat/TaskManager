@@ -49,6 +49,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     const [open, setOpen] = useState(false);
     const [type, setType] = useState<ModalType>();
     const navigate = useNavigate();
+    
     useEffect(() => {
         const fetchApi = async () => {
             try {

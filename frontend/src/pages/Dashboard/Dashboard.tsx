@@ -42,7 +42,9 @@ const Dashboard = ({ title }: { title: string }) => {
                     <span>Thêm task mới</span>
                 </button>
             </div>
+
             <StatisticPanel />
+
             <div className="mt-8 flex items-center justify-between rounded-2xl bg-white p-4 shadow-sm">
                 <div>
                     <Icon.FunnelIcon className="text-main mr-2 mb-1 inline-block" />

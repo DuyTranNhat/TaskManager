@@ -23,7 +23,7 @@ const TaskModal = ({ open, setOpen, modalType }: TaskModalType) => {
             case 'delete':
                 return <DeleteTaskModal open={open} setOpen={setOpen} taskId={modalType.taskId} />;
             default:
-                throw new Error('Invalid type');
+                throw new Error('Invalid type modal task');
         }
 };
 
