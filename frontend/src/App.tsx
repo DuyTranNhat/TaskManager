@@ -21,14 +21,33 @@ function App() {
                                 Layout = Fragment;
                             }
 
+                            let isGuard = false;
+                            let RouteGuard = Layout;
+
+                            if (route.guest) {
+                                isGuard = true;
+                                RouteGuard = route.guest;
+                            } else if (route.protected) {
+                                isGuard = true;
+                                RouteGuard = route.protected;
+                            }
+
                             return (
                                 <Route
                                     key={index}
                                     path={route.path}
                                     element={
-                                        <Layout>
-                                            <Page title={route.title} />
-                                        </Layout>
+                                        isGuard ? (
+                                            <RouteGuard>
+                                                <Layout>
+                                                    <Page title={route.title} />
+                                                </Layout>
+                                            </RouteGuard>
+                                        ) : (
+                                            <Layout>
+                                                <Page title={route.title} />
+                                            </Layout>
+                                        )
                                     }
                                 ></Route>
                             );
@@ -36,7 +55,7 @@ function App() {
                     </Routes>
                 </div>
             </AuthProvider>
-             <ToastContainer
+            <ToastContainer
                 position="top-right"
                 autoClose={3000} // 3s tự đóng
                 hideProgressBar={false}

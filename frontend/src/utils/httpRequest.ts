@@ -5,9 +5,11 @@ import { callRefreshHandler } from '~/utils/authService';
 
 import { handleError } from '~/Helpers';
 
+const BASE_URL = import.meta.env.MODE === 'development' ? `${import.meta.env.VITE_BASE_URL}/api/` : '/api';
+
 const httpRequest = axios.create({
-    baseURL: `${import.meta.env.VITE_BASE_URL}/api/`,
-    timeout: 10000,
+    baseURL: BASE_URL,
+    timeout: 10000,                                                                             
 });
 
 httpRequest.interceptors.request.use(

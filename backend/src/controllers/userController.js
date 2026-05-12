@@ -32,7 +32,7 @@ export async function updateProfile(req, res) {
   const userId = req.user.id;
   const { fullName, email } = req.body;
 
-  if (!fullName || !email) {
+  if (!fullName || !email) {  
     return res
       .status(400)
       .json({ success: false, message: "Vui lòng điền đầy đủ thông tin" });
@@ -44,19 +44,19 @@ export async function updateProfile(req, res) {
       return res.status(404).json({ success: false, message: "User không tồn tại" });
     }
 
-    user = await User.findByIdAndUpdate(
+    const userUpdated = await User.findByIdAndUpdate(
       userId,
       { fullName, email },
-      { new: true }
+      { new: true, runvalidators: true }
     );
 
     return res.status(200).json({
       success: true,
       message: "Thông tin người dùng đã được cập nhật",
       user: {
-        id: user._id,
-        fullName: user.fullName,
-        email: user.email,
+        id: userUpdated._id,
+        fullName: userUpdated.fullName,
+        email: userUpdated.email,
       },
     });
   } catch (error) {
