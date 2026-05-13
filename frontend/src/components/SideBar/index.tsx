@@ -14,8 +14,8 @@ const SideBar = () => {
 
 
     return (
-        <div className="sticky top-25 bottom-0 z-50 h-screen w-1/6 self-start p-6 shadow-md">
-            <div className="flex border-b border-gray-300/30 pb-5">
+     
+    <aside className="sticky top-25 hidden h-screen w-64 shrink-0 self-start p-6 shadow-md md:block">        <div className="flex border-b border-gray-300/30 pb-5">
                 <Icon.UserIcon className="bg-gradient-color size-10 rounded-full p-2 text-white" />
                 <div className="ml-2 flex-1">
                     <h1 className="text-sm font-bold">Xin chào, Trần Nhật Duy</h1>
@@ -61,7 +61,7 @@ const SideBar = () => {
                     <p className="text-main/80 hover:text-main/100 cursor-pointer">Tham khảo thêm dịch vụ</p>
                 </div>
             </div>
-        </div>
+        </aside>
     );
 };
 

@@ -43,6 +43,7 @@ const Login = ({ title }: { title: string }) => {
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="email"
+                        value={'user1@gmail.com'}
                         placeholder="Email"
                         spellCheck={false}
                         {...register('email')}
@@ -54,6 +55,7 @@ const Login = ({ title }: { title: string }) => {
                     <input
                         className="flex-1 caret-(--color-main) outline-none"
                         type="password"
+                        value={'user1@gmail.com'}
                         placeholder="Mật khẩu"
                         spellCheck={false}
                         {...register('password')}

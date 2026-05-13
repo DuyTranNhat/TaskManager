@@ -10,16 +10,30 @@ type Props = {
 
 const MainLayout: React.FC<Props> = ({ children }) => {
     return (
-        <div className="wrapper">
+        <div className="min-h-screen bg-gray-300/10">
             <Header />
+
             <TaskProvider>
-                <div className="flex bg-gray-300/10">
-                    <SideBar />
-                    <Container>{children}</Container>
-                    <RightBar />
+                <div className="flex">
+
+                    {/* Sidebar */}
+                    <div className="hidden md:block md:w-64">
+                        <SideBar />
+                    </div>
+
+                    {/* Main Content */}
+                    <main className="flex-1 w-full">
+                        <Container>{children}</Container>
+                    </main>
+
+                    {/* RightBar */}
+                    <div className="hidden xl:block">
+                        <RightBar />
+                    </div>
                 </div>
             </TaskProvider>
         </div>
     );
 };
+
 export default MainLayout;

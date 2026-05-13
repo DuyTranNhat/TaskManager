@@ -22,10 +22,13 @@ export const RegisterApi = async (form: RegisterRequest) => {
 
 export const RefreshApi = async () => {
     const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/auth/refresh`,
+        import.meta.env.MODE === 'development'
+            ? `${import.meta.env.VITE_BASE_URL}/api/auth/refresh`
+            : '/api/auth/refresh',
         {},
         { withCredentials: true },
     );
+
     return response.data;
 };
 

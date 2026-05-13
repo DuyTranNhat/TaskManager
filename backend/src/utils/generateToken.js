@@ -13,8 +13,8 @@ export const generateAccessToken = (user) => {
             email: user.email,
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: `${ACCESS_EXPIRE_MINUTES}m` },
-        // { expiresIn: '30s' },
+        // { expiresIn: `${ACCESS_EXPIRE_MINUTES}m` },
+        { expiresIn: '30s' },
     );
 };
 

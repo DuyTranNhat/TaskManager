@@ -36,19 +36,18 @@ const StatisticPanel = () => {
         },
     ];
 
-    return (
-        <div className="mt-8 flex gap-4">
-            {statisticItems.map((item) => (
-                <StatisticIem
-                    key={item.title}
-                    Icon={item.Icon}
-                    iconColorClass={item.iconColorClass}
-                    valueColorClass={item.valueColorClass}
-                    title={item.title}
-                    value={item.value}
-                />
-            ))}
-        </div>
+    return (<div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+        {statisticItems.map((item) => (
+            <StatisticIem
+                key={item.title}
+                Icon={item.Icon}
+                iconColorClass={item.iconColorClass}
+                valueColorClass={item.valueColorClass}
+                title={item.title}
+                value={item.value}
+            />
+        ))}
+    </div>
     );
 };
 
