@@ -15,6 +15,12 @@ export type LoginRequest = {
     password: string;
 };
 
+export type LoginGoogleRequest = {
+    email: string;
+    fullName: string,
+};
+
+
 export type LoginResponse = {
     user: User;
     accessToken: string;

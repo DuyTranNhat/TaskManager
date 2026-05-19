@@ -66,6 +66,7 @@ export async function updateProfile(req, res) {
 }
 
 
+
 export async function updatePassword(req, res) {
   const userId = req.user.id;
   const { currentPassword, newPassword } = req.body;

@@ -14,17 +14,17 @@ const SideBar = () => {
 
 
     return (
-     
-    <aside className="sticky top-25 hidden h-screen w-64 shrink-0 self-start p-6 shadow-md md:block">        <div className="flex border-b border-gray-300/30 pb-5">
-                <Icon.UserIcon className="bg-gradient-color size-10 rounded-full p-2 text-white" />
-                <div className="ml-2 flex-1">
-                    <h1 className="text-sm font-bold">Xin chào, Trần Nhật Duy</h1>
-                    <div className="bg-gradient-color mt-1 flex items-start bg-clip-text text-xs text-transparent italic">
-                        <Icon.StarIcon className="text-side mr-1 inline-block" />
-                        <span>Bắt đầu công việc nào!</span>
-                    </div>
+
+        <aside className="sticky top-25 hidden h-screen w-64 shrink-0 self-start p-6 shadow-md md:block">        <div className="flex border-b border-gray-300/30 pb-5">
+            <Icon.UserIcon className="bg-gradient-color size-10 rounded-full p-2 text-white" />
+            <div className="ml-2 flex-1">
+                <h1 className="text-sm font-bold">Xin chào, Trần Nhật Duy</h1>
+                <div className="bg-gradient-color mt-1 flex items-start bg-clip-text text-xs text-transparent italic">
+                    <Icon.StarIcon className="text-side mr-1 inline-block" />
+                    <span>Bắt đầu công việc nào!</span>
                 </div>
             </div>
+        </div>
             <div className="mt-5 rounded-2xl border-2 border-gray-300/10 p-3">
                 <div className="text-main flex items-center justify-between">
                     <p className="font-bold">Năng suất</p>

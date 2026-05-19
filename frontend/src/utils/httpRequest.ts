@@ -7,6 +7,8 @@ import { handleError } from '~/Helpers';
 
 const BASE_URL = import.meta.env.MODE === 'development' ? `${import.meta.env.VITE_BASE_URL}/api/` : '/api';
 
+
+
 const httpRequest = axios.create({
     baseURL: BASE_URL,
     timeout: 10000,                                                                             

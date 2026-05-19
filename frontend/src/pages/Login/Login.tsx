@@ -8,6 +8,7 @@ import config from '~/config';
 import { Icon } from '~/components';
 import type { LoginRequest } from '~/Models';
 import { useAuth } from '~/Context';
+import OAuth from '~/components/OAuth';
 
 const validateSchema = yup.object({
     email: yup.string().required('Vui lòng nhập email!').email('Sai định dạng email'),
@@ -73,6 +74,7 @@ const Login = ({ title }: { title: string }) => {
                 >
                     Đăng nhập
                 </button>
+                <OAuth />
                 <div className="mt-2 text-center text-sm">
                     <p className="mr-1 inline-block">Bạn chưa có tài khoản?</p>
                     <Link className="text-main hover:underline" to={config.routes.register}>

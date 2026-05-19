@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import bcryptjs from 'bcryptjs';
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
@@ -16,7 +17,10 @@ export const register = async (req, res, next) => {
     const { fullName, email, password } = req.body;
 
     if (!fullName || !email || !password) {
-      return next({ statusCode: 400, message: "Vui lòng điền đầy đủ thông tin" });
+      return next({
+        statusCode: 400,
+        message: "Vui lòng điền đầy đủ thông tin",
+      });
     }
 
     const existing = await User.findOne({ email });
@@ -29,7 +33,6 @@ export const register = async (req, res, next) => {
       email,
       passwordHash: password,
     });
-    
 
     const accessToken = generateAccessToken(user);
     const refreshToken = await generateRefreshToken(user._id);
@@ -51,6 +54,70 @@ export const register = async (req, res, next) => {
     });
   } catch (err) {
     next(err);
+  }
+};
+
+export const loginGoogle = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      const accessToken = generateAccessToken(user);
+      const refreshToken = await generateRefreshToken(user._id);
+
+      const { passwordHash, ...rest } = user._doc;
+      res
+        .cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          secure: false,
+          sameSite: "Lax",
+          path: "/",
+          maxAge: 1000 * 60 * 60 * 24 * REFRESH_EXPIRE_DAYS,
+        })
+        .status(200)
+        .json({
+          user: {
+            userId: rest._id,
+            fullName: rest.fullName,
+            email: rest.email,
+          },
+          accessToken,
+        });
+    } else {
+      const generatedPassword =
+        Math.random().toString(36).slice(-8) +
+        Math.random().toString(36).slice(-8);
+      const newUser = new User({
+        fullName:
+          req.body.fullName.split(" ").join("").toLowerCase() +
+          Math.random().toString(36).slice(-4),
+        email: req.body.email,
+        passwordHash: generatedPassword,
+      });
+
+      await newUser.save();
+
+      const accessToken = generateAccessToken(user);
+      const refreshToken = await generateRefreshToken(user._id);
+      res
+        .cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          secure: false,
+          sameSite: "Lax",
+          path: "/",
+          maxAge: 1000 * 60 * 60 * 24 * REFRESH_EXPIRE_DAYS,
+        })
+        .status(200)
+        .json({
+          user: {
+            userId: newUser._id,
+            fullName: rest.fullName,
+            email: rest.email,
+          },
+          accessToken,
+        });
+    }
+  } catch (error) {
+    next(error);
   }
 };
 

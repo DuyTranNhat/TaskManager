@@ -1,10 +1,19 @@
 import { request } from '~/utils';
 import axios from 'axios';
-import type { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from '~/Models';
+import type { LoginGoogleRequest, LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from '~/Models';
 
 export const LoginApi = async (form: LoginRequest) => {
     try {
         const response = await request.post<LoginResponse>('auth/login', form, { withCredentials: true });
+        return response.data;
+    } catch (err) {
+        console.log('error from LoginAPI', err);
+    }
+};
+
+export const LoginGoogleApi = async (form: LoginGoogleRequest) => {
+    try {
+        const response = await request.post<LoginResponse>('auth/google', form, { withCredentials: true });
         return response.data;
     } catch (err) {
         console.log('error from LoginAPI', err);

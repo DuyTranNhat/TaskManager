@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
-import { LoginApi, RegisterApi, EditProfileApi, ChangePasswordApi, LogoutApi, RefreshApi } from '~/services';
+import { LoginApi, LoginGoogleApi, RegisterApi, EditProfileApi, ChangePasswordApi, LogoutApi, RefreshApi } from '~/services';
 import type {
     UserProfile,
     LoginRequest,
@@ -14,12 +14,14 @@ import type {
     ChangePasswordRequest,
     LoginResponse,
     RegisterResponse,
+    LoginGoogleRequest,
 } from '~/Models';
 import { registerRefreshHandler } from '~/utils/authService';
 
 type UserContextType = {
     user: UserProfile | null;
     loginUser: (form: LoginRequest) => void;
+    loginGoogle: (form: LoginGoogleRequest) => void;
     registerUser: (form: RegisterRequest) => void;
     logoutUser: () => void;
     editProfileUser: (form: EditProfileRequest) => void;
@@ -70,6 +72,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             localStorage.setItem('user', JSON.stringify(data.user));
         }
     };
+
+  
+    const loginGoogle = async (form: LoginGoogleRequest) => {
+        const LoginRequestDto: LoginGoogleRequest = {
+            email: form.email,
+            fullName: form.fullName,
+        };
+        const data = await LoginGoogleApi(LoginRequestDto);
+        console.log(data)
+        loginHandler(data);
+    };
+
 
     const loginUser = async (form: LoginRequest) => {
         const LoginRequestDto: LoginRequest = {
@@ -150,7 +164,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loginUser, logoutUser, registerUser, editProfileUser, changePassword }}>
+        <AuthContext.Provider value={{ user, loginUser, loginGoogle, logoutUser, registerUser, editProfileUser, changePassword }}>
             {children}
         </AuthContext.Provider>
     );
